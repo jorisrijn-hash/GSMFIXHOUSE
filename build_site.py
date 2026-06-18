@@ -11,7 +11,7 @@ BOOK = "#afspraak"
 SELLURL = "https://wa.me/31639432333"
 WA_LEIDEN = "https://wa.me/31639432333"
 WA_KATWIJK = "https://wa.me/31622444556"
-VERSION = "16"  # bump to force browsers to reload css/js after changes
+VERSION = "17"  # bump to force browsers to reload css/js after changes
 
 # ---------------------------------------------------------------- brand mark (old phone-G logo)
 LOGO = '''<svg class="logo__mark" viewBox="0 0 64 64" width="40" height="40" aria-hidden="true">
@@ -62,6 +62,7 @@ def ticker():
 NAV_ITEMS = [
     ("reparaties", "Reparaties", "reparaties.html"),
     ("verkopen", "Verkopen", "verkopen.html"),
+    ("webshop", "Webshop", "webshop.html"),
     ("zakelijk", "Zakelijk", "zakelijk.html"),
     ("over", "Over ons", "over.html"),
     ("locaties", "Locaties", "locaties.html"),
@@ -90,6 +91,7 @@ BN_ICONS = {
     "sell": '<path d="M20 12V7l-7-4-7 4v5c0 5 3 7 7 9 4-2 7-4 7-9z" opacity="0"/><path d="M3 11l9-7 9 7-1 8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" opacity="0"/><circle cx="9" cy="9" r="1.4"/><path d="M3.5 12.5 11 5h6.5a2 2 0 0 1 2 2V13.5L12 21z"/>',
     "info": '<circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><line x1="12" y1="8" x2="12" y2="8.1"/>',
     "pin": '<path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/>',
+    "bag": '<path d="M6 8h12l-1 11a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 8z"/><path d="M9 8a3 3 0 0 1 6 0"/>',
 }
 
 def bottom_nav(active):
@@ -97,7 +99,7 @@ def bottom_nav(active):
         ("home", "Home", "index.html", "home"),
         ("reparaties", "Reparatie", "reparaties.html", "rep"),
         ("verkopen", "Verkopen", "verkopen.html", "sell"),
-        ("over", "Over", "over.html", "info"),
+        ("webshop", "Webshop", "webshop.html", "bag"),
         ("locaties", "Locaties", "locaties.html", "pin"),
     ]
     out = ""
@@ -497,6 +499,7 @@ def footer():
       <a href="reparaties.html">Alle apparaten</a>
       <a href="alle-reparaties.html">Alle reparaties &amp; prijzen</a>
       <a href="verkopen.html">Verkoop je toestel</a>
+      <a href="webshop.html">Webshop</a>
       <a href="zakelijk.html">Zakelijke klanten</a>
     </div>
     <div class="footer__col">
@@ -860,6 +863,48 @@ def admin_page():
     return admin_head() + "\n" + admin_body()
 
 # ---------------------------------------------------------------- build
+def webshop_body():
+    products = [
+        ("case",    "Hoesjes",      "Telefoonhoesjes",          "vanaf &euro; 9,95"),
+        ("shield",  "Bescherming",  "Screenprotectors",         "vanaf &euro; 12,50"),
+        ("plug",    "Opladen",      "Opladers &amp; adapters",  "vanaf &euro; 14,95"),
+        ("cable",   "Kabels",       "USB-C &amp; Lightning",    "vanaf &euro; 7,95"),
+        ("buds",    "Audio",        "Oordopjes &amp; headsets", "vanaf &euro; 19,95"),
+        ("battery", "Onderweg",     "Powerbanks",               "vanaf &euro; 24,95"),
+    ]
+    icons = {
+        "case":    '<rect x="7" y="3" width="10" height="18" rx="2.5"/><circle cx="12" cy="6" r=".7"/>',
+        "shield":  '<path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/>',
+        "plug":    '<rect x="6" y="9" width="12" height="10" rx="2"/><path d="M9 9V5M15 9V5"/>',
+        "cable":   '<path d="M8 4v6a4 4 0 0 0 8 0V4"/><path d="M12 14v6"/>',
+        "buds":    '<circle cx="8" cy="9" r="3"/><circle cx="16" cy="15" r="3"/><path d="M8 12v3M16 12V9"/>',
+        "battery": '<rect x="4" y="7" width="15" height="10" rx="2"/><line x1="21" y1="10.5" x2="21" y2="13.5"/><rect x="7" y="10" width="6" height="4" rx="1"/>',
+    }
+    cards = ""
+    for icon, cat, name, price in products:
+        cards += f'''<article class="shop-card reveal" data-reveal>
+      <div class="shop-card__media"><svg viewBox="0 0 24 24">{icons[icon]}</svg></div>
+      <div class="shop-card__body">
+        <span class="shop-card__cat">{cat}</span>
+        <h3 class="shop-card__name">{name}</h3>
+        <div class="shop-card__row"><span class="shop-card__price">{price}</span><button class="shop-card__btn" type="button" disabled>Binnenkort</button></div>
+      </div>
+    </article>'''
+    return f'''{page_hero("Webshop", "Accessoires &amp; meer", "Hoesjes, opladers, screenprotectors en meer. Binnenkort eenvoudig online te bestellen.", deco="b")}
+<section class="section">
+  <div class="container">
+    <div class="shop-demo reveal" data-reveal>
+      <span class="shop-demo__badge">Demo</span>
+      <p>Deze webshop is nog in opbouw. De producten en prijzen hieronder zijn <strong>voorbeelden</strong> &mdash; online bestellen is nog niet mogelijk. Accessoires nodig? Kom gerust langs in onze winkel in <a href="locaties.html">Leiden of Katwijk</a>.</p>
+    </div>
+    <header class="section__head">
+      {eyebrow("Ons assortiment")}
+      <h2 class="section__title reveal" data-reveal>Accessoires voor elk toestel</h2>
+    </header>
+    <div class="shop-grid" data-stagger>{cards}</div>
+  </div>
+</section>'''
+
 def build():
     os.makedirs(OUT, exist_ok=True)
     pages = {
@@ -886,6 +931,11 @@ def build():
             "verkopen",
             verkopen_body(),
             scripts=("js/main.js", "js/catalog.js", "js/flow.js")),
+        "webshop.html": page(
+            "Webshop &middot; Accessoires &middot; GSM Fixhouse",
+            "Hoesjes, opladers, screenprotectors en meer accessoires bij GSM Fixhouse. Binnenkort online te bestellen.",
+            "webshop",
+            webshop_body()),
         "zakelijk.html": page(
             "Zakelijke klanten · GSM Fixhouse",
             "Reparatie voor bedrijven en scholen. Vaste contactpersoon, prioriteit, ophaalservice en facturatie.",
