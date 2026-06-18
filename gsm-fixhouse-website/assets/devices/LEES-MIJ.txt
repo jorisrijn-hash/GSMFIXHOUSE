@@ -1,0 +1,94 @@
+GSM FIXHOUSE - eigen foto per model toevoegen
+================================================
+
+De catalogus toont bij elk model een gestileerde illustratie. Wil je een ECHTE
+foto? Zet een afbeelding met de juiste bestandsnaam in deze map (assets/devices/).
+De foto verschijnt dan automatisch, netjes bijgesneden in de huisstijl. Is er
+(nog) geen foto, dan blijft de illustratie staan. Niets in de code aanpassen.
+
+FORMAAT: .png (transparant, mooiste) of .jpg, klein (< 200 KB).
+         Het slot probeert eerst .png, dan .jpg, anders de illustratie.
+         Reeds meegeleverd (transparant verwerkt): iPhone 7, 8, 11, 12, 13, 14, 15, 16, 17, SE, X/XS.
+
+RECHTEN: gebruik GEEN officiele Apple/Samsung-marketingfotos van internet (auteursrecht).
+Veilig: eigen winkelfotos, of rechtenvrije/commercieel gelicentieerde stockfotos.
+
+REGEL VOOR BESTANDSNAMEN
+modelnaam in kleine letters, spaties/tekens worden streepjes, / wordt spatie,
+aanhalingstekens vervallen.  Voorbeeld: "iPhone 16 Pro" -> iphone-16-pro.png (of .jpg)
+
+CATALOGUS-MODELLEN (model -> bestand)
+  iPhone 17              ->  iphone-17.jpg
+  iPhone 16              ->  iphone-16.jpg
+  iPhone 15              ->  iphone-15.jpg
+  iPhone 14              ->  iphone-14.jpg
+  iPhone 13              ->  iphone-13.jpg
+  iPhone 12              ->  iphone-12.jpg
+  iPhone 11              ->  iphone-11.jpg
+  iPhone X / XS          ->  iphone-x-xs.jpg
+  iPhone 8               ->  iphone-8.jpg
+  iPhone 7               ->  iphone-7.jpg
+  iPhone SE              ->  iphone-se.jpg
+  Samsung S Serie        ->  samsung-s-serie.jpg
+  Samsung A Serie        ->  samsung-a-serie.jpg
+  Samsung Z Serie        ->  samsung-z-serie.jpg
+  Samsung Note Serie     ->  samsung-note-serie.jpg
+  Samsung M Serie        ->  samsung-m-serie.jpg
+  Samsung X Cover Serie  ->  samsung-x-cover-serie.jpg
+  Moto G Serie           ->  moto-g-serie.jpg
+  Moto X Serie           ->  moto-x-serie.jpg
+  Motorola overig        ->  motorola-overig.jpg
+  Huawei P Serie         ->  huawei-p-serie.jpg
+  Huawei Mate Serie      ->  huawei-mate-serie.jpg
+  Huawei Honor Serie     ->  huawei-honor-serie.jpg
+  Huawei overig          ->  huawei-overig.jpg
+  OnePlus                ->  oneplus.jpg
+  Google Pixel           ->  google-pixel.jpg
+  Nokia                  ->  nokia.jpg
+  Xiaomi Mi Serie        ->  xiaomi-mi-serie.jpg
+  Xiaomi Redmi Serie     ->  xiaomi-redmi-serie.jpg
+  Xiaomi Poco Serie      ->  xiaomi-poco-serie.jpg
+  Xiaomi Shark Serie     ->  xiaomi-shark-serie.jpg
+  Oppo A Serie           ->  oppo-a-serie.jpg
+  Oppo Find X Serie      ->  oppo-find-x-serie.jpg
+  Oppo Reno Serie        ->  oppo-reno-serie.jpg
+  Apple iPad             ->  apple-ipad.jpg
+  Samsung tablet         ->  samsung-tablet.jpg
+  Microsoft Surface      ->  microsoft-surface.jpg
+  Huawei tablet          ->  huawei-tablet.jpg
+  Sony tablet            ->  sony-tablet.jpg
+  MacBook                ->  macbook.jpg
+  Windows laptop         ->  windows-laptop.jpg
+  Computer / PC          ->  computer-pc.jpg
+  PlayStation 5          ->  playstation-5.jpg
+  PlayStation 4          ->  playstation-4.jpg
+  Xbox                   ->  xbox.jpg
+  Nintendo Switch        ->  nintendo-switch.jpg
+  Smartwatch             ->  smartwatch.jpg
+
+VERKOOP-MODELLEN (verkoop-tool / "Verkoop je toestel")
+Zelfde map en regels als hierboven. Modellen met (*) delen hun bestand met de
+catalogus en hebben dus al een foto.
+  -- Apple --
+  iPhone 15 Pro          ->  iphone-15-pro.jpg
+  iPhone 15              ->  iphone-15.png        (*) reeds aanwezig
+  iPhone 14              ->  iphone-14.png        (*) reeds aanwezig
+  iPhone 13              ->  iphone-13.png        (*) reeds aanwezig
+  iPhone 12              ->  iphone-12.png        (*) reeds aanwezig
+  iPhone 11              ->  iphone-11.png        (*) reeds aanwezig
+  iPad Pro 11"           ->  ipad-pro-11.jpg
+  iPad Air               ->  ipad-air.jpg
+  iPad 10                ->  ipad-10.jpg
+  Apple Watch S9         ->  apple-watch-s9.jpg
+  Apple Watch SE         ->  apple-watch-se.jpg
+  MacBook Air M2         ->  macbook-air-m2.jpg
+  MacBook Pro 14"        ->  macbook-pro-14.jpg
+  -- Samsung --
+  Samsung S24            ->  samsung-s24.jpg
+  Samsung S23            ->  samsung-s23.jpg
+  Samsung A54            ->  samsung-a54.jpg
+  Samsung Tab S9         ->  samsung-tab-s9.jpg
+  Samsung Watch 6        ->  samsung-watch-6.jpg
+  -- Google --
+  Pixel 8 Pro            ->  pixel-8-pro.jpg
+  Pixel 7                ->  pixel-7.jpg

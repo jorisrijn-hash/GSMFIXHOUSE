@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin · Facturatie · GSM Fixhouse</title>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css?v=17">
+<link rel="stylesheet" href="../css/admin.css?v=17">
+</head>
+<body class="admin-body">
+
+<!-- ===================== LOGIN ===================== -->
+<div class="a-login" id="aLogin">
+  <form class="a-login__card" id="aLoginForm" autocomplete="off">
+    <img class="a-login__mark" src="../assets/logo-mark.svg" alt="">
+    <h1>GSM Fixhouse Admin</h1>
+    <p>Interne facturatie, log in om door te gaan.</p>
+    <div class="a-login__err" id="aLoginErr">Onjuiste gebruikersnaam of wachtwoord.</div>
+    <div class="a-field" style="text-align:left;margin-bottom:12px">
+      <label for="aUser">Gebruikersnaam</label>
+      <input id="aUser" type="text" autocomplete="username">
+    </div>
+    <div class="a-field" style="text-align:left;margin-bottom:18px">
+      <label for="aPass">Wachtwoord</label>
+      <input id="aPass" type="password" autocomplete="current-password">
+    </div>
+    <button class="btn btn--primary btn--full" type="submit">Inloggen</button>
+  </form>
+</div>
+
+<!-- ===================== TOPBAR ===================== -->
+<div class="a-bar">
+  <div class="a-bar__brand">
+    <img src="../assets/logo-full.png" alt="GSM Fixhouse">
+    <span class="a-badge">Facturatie</span>
+  </div>
+  <div class="a-bar__right">
+    <a class="btn btn--ghost btn--sm" href="../index.html">&larr; Website</a>
+    <button class="btn btn--line btn--sm" type="button" id="aLogout">Uitloggen</button>
+  </div>
+</div>
+
+<!-- ===================== WORKSPACE ===================== -->
+<main>
+<div class="a-wrap">
+
+  <!-- LEFT: builder -->
+  <div class="a-col">
+
+    <!-- Vestiging: bovenaan, bepaalt adres + contact op de factuur -->
+    <div class="a-card a-vest">
+      <div class="a-vest__label">Vestiging op de factuur</div>
+      <div class="a-vest__seg" id="aVestSeg" role="tablist">
+        <button class="a-vest__btn" type="button" data-vest="Leiden" role="tab">Leiden</button>
+        <button class="a-vest__btn" type="button" data-vest="Katwijk" role="tab">Katwijk</button>
+      </div>
+      <select id="mVestiging" class="a-vest__select" hidden><option>Leiden</option><option>Katwijk</option></select>
+    </div>
+
+    <!-- Step 1: zoek toestel + dienst -->
+    <div class="a-card">
+      <div class="a-step"><span class="a-step__n">1</span><h2>Zoek toestel &amp; dienst</h2><p>Kies een toestel en voeg de reparatie toe</p></div>
+      <div class="a-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg><input id="aSearch" type="text" placeholder="Zoek op model, bv. iPhone 13 of Samsung S Serie"></div>
+      <div class="a-chips" id="aChips"></div>
+      <div class="a-devgrid" id="aDevGrid"></div>
+      <div class="a-custom" style="margin-top:16px">
+        <div class="a-field" style="margin-bottom:8px"><label>Staat het toestel er niet bij? Voeg handmatig toe</label></div>
+        <div class="a-custom__row" style="grid-template-columns:1fr 150px auto">
+          <div class="a-field"><label for="aManualName">Toestel</label><input id="aManualName" type="text" placeholder="bv. Fairphone 5"></div>
+          <div class="a-field"><label for="aManualCat">Categorie</label><select id="aManualCat"><option value="Smartphone">Smartphone</option><option value="Tablet">Tablet</option><option value="Laptop">Laptop</option><option value="Computer">Computer</option><option value="Console">Console</option><option value="Smartwatch">Smartwatch</option></select></div>
+          <button class="a-add" type="button" id="aManual">Toevoegen</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Selection / cart -->
+    <div class="a-card">
+      <div class="a-step"><span class="a-step__n">&#9776;</span><h2>Reparaties op deze factuur</h2></div>
+      <div class="a-cart" id="aCart"></div>
+      <button class="a-add" type="button" id="aLosse" style="margin-top:14px">+ Losse regel of korting</button>
+      <div class="a-totals" id="aTotals"></div>
+    </div>
+
+    <!-- Step 2: NAW + factuurgegevens -->
+    <div class="a-card">
+      <div class="a-step"><span class="a-step__n">2</span><h2>Klantgegevens &amp; factuur</h2></div>
+      <form id="aForm" autocomplete="off">
+        <div class="a-grid2">
+          <div class="a-field a-span2"><label for="cNaam">Naam klant</label><input id="cNaam" type="text" placeholder="Voor- en achternaam" ></div>
+          <div class="a-field a-span2"><label for="cStraat">Adres</label><input id="cStraat" type="text" placeholder="Straat en huisnummer" ></div>
+          <div class="a-field"><label for="cPostcode">Postcode</label><input id="cPostcode" type="text" placeholder="0000 AA" ></div>
+          <div class="a-field"><label for="cPlaats">Woonplaats</label><input id="cPlaats" type="text" placeholder="Plaats" ></div>
+          <div class="a-field"><label for="cEmail">E-mail (optioneel)</label><input id="cEmail" type="email" placeholder="klant@email.nl" ></div>
+          <div class="a-field"><label for="cTel">Telefoon (optioneel)</label><input id="cTel" type="tel" placeholder="06 ..." ></div>
+        </div>
+        <div class="a-grid2" style="margin-top:14px">
+          <div class="a-field"><label for="mNummer">Factuurnummer</label><input id="mNummer" type="text" placeholder="" ></div>
+          <div class="a-field"><label for="mDatum">Factuurdatum</label><input id="mDatum" type="date" placeholder="" ></div>
+        </div>
+        <div class="a-grid2" style="margin-top:14px">
+          <div class="a-field"><label for="mBetaal">Betaalwijze</label><select id="mBetaal"><option>Pin</option><option>Contant</option><option>Op rekening</option></select></div>
+          <div class="a-field"><label for="mNotitie">Notitie op factuur (optioneel)</label><input id="mNotitie" type="text" placeholder="bv. Toestel opgehaald"></div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Step 3: printen -->
+    <div class="a-card">
+      <div class="a-step"><span class="a-step__n">3</span><h2>Printen</h2></div>
+      <div class="a-actions">
+        <button class="btn btn--primary btn--lg" type="button" id="aPrintFac">Print / PDF factuur</button>
+        <button class="btn btn--line btn--lg" type="button" id="aPrintBon">Print bonnetje</button>
+        <button class="btn btn--ghost btn--sm" type="button" id="aReset">Nieuwe factuur</button>
+      </div>
+      <p class="fac__note" style="margin-top:12px">Tip: kies in het printvenster &ldquo;Opslaan als PDF&rdquo; om te bewaren of te mailen. Voor het bonnetje kun je het papierformaat op 80&nbsp;mm zetten als je een bonprinter hebt.</p>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: live preview -->
+  <div class="a-preview">
+    <div class="a-tabs" id="aPreviewTabs">
+      <button class="a-tab is-on" type="button" data-tab="factuur">Factuur</button>
+      <button class="a-tab" type="button" data-tab="bon">Bonnetje</button>
+    </div>
+    <div class="a-stage" id="aStage"></div>
+  </div>
+
+</div>
+</main>
+
+<!-- service picker -->
+<div class="a-modal" id="aModal"><div class="a-modal__panel" id="aModalBody"></div></div>
+
+<!-- print target -->
+<div id="printRoot" aria-hidden="true"></div>
+
+<script src="../js/catalog.js?v=17" defer></script>
+<script src="../js/admin.js?v=17" defer></script>
+</body>
+</html>
